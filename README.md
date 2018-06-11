@@ -8,4 +8,6 @@ cd Bugs
 npm install
 node server
 ```
-Node and NPM should be installed in your machine
+Open http://localhost:4002 in your browser.
+
+Note that Node JS should be installed in your machine for this application to work.
