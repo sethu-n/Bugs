@@ -1,0 +1,23 @@
+<div class="editor-container">
+  <div class="editor-toolbar">
+    <div ng-show="editMode">
+      <button class="fa fa-bold" ng-click="handleClick('bold')"></button>
+      <button class="fa fa-italic" ng-click="handleClick('italic')"></button>
+      <button class="fa fa-underline" ng-click="handleClick('underline')"></button>
+      <button class="fa fa-quote-left" ng-click="handleClick('FormatBlock','blockquote')"></button>
+      <button class="fa fa-header" ng-click="handleClick('FormatBlock','h2')"></button>
+      <button class="fa fa-paragraph" ng-click="handleClick('FormatBlock','p')"></button>
+      <button class="fa fa-link" ng-click="handleClick('createLink')"></button>
+      <button class="fa fa-list-ol" ng-click="handleClick('insertOrderedList')"></button>
+      <button class="fa fa-list-ul" ng-click="handleClick('insertUnorderedList')"></button>
+      <button class="fa fa-undo" ng-click="handleClick('undo')"></button>
+      <button class="fa fa-repeat" ng-click="handleClick('redo')"></button>
+      <button class="fa fa-save float-right"  ng-click="toggleMode()"></button>      
+  </div>
+  <div ng-show="!editMode">
+      <div ng-transclude="title" class="editor-title"></div>
+      <button class="fa fa-edit float-right" ng-click="toggleMode()"></button>
+  </div>
+  </div>
+  <div id="issuesTextarea" contenteditable="{{editMode}}" class="editor-textarea"></div>
+</div>

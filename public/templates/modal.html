@@ -1,0 +1,20 @@
+<div class="modal fade" id="userModal" role="dialog" ng-controller="modalController">
+  <div class="modal-dialog modal-sm">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please enter user name to proceed further</p>
+        <form name="LoginForm">
+            <input name="userName" type="text" ng-model="user.userName" placeholder="Enter user name" autocomplete="off" ng-required="true"/>            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="storeUserName()" ng-disabled="LoginForm.$invalid">Proceed</button>
+      </div>
+    </div>
+
+  </div>
+</div>

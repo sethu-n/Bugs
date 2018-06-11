@@ -1,0 +1,39 @@
+<div class="panel-container">
+    <div class="panel-left">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Create New Issue</span>
+            </div>
+
+            <div class="options">
+                <form name="issueForm">
+                    <input type="text" name="issueTitle" ng-model="issue.title" placeholder="Title of the issue" ng-required="true" autocomplete="off"/>
+                </form>
+            </div>
+            <div class="options">
+            
+                <issue-editor edit="editMode" editor-content="newComment.description">
+                    <editor-title>Description about the issue</editor-title>
+                </issue-editor>
+            </div>
+            <div class="options">
+                <button type="submit" ng-disabled="issueForm.issueTitle.$invalid" class="btn btn-primary" ng-click="createNewIssue()">Create</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-right">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Options</span>
+            </div>
+            <filter-element filter-options="labels" bind-key="name" selected-option="issue.label" multiselect="true">
+                <filter-heading>Labels</filter-heading>
+                <filter-desc>Multiple labels can be selected</filter-desc>
+            </filter-element>
+            <filter-element filter-options="users" bind-key="userName" selected-option="issue.assignedTo">
+                <filter-heading>Assignee</filter-heading>
+                <filter-desc>Assign issue to a user</filter-desc>
+            </filter-element>
+        </div>
+    </div>
+</div>

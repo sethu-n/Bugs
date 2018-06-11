@@ -1,0 +1,38 @@
+<div class="panel-container">
+    <div class="panel-left">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Labels</span>
+                <span class="panel-actions flex-1">
+                    <input type="text" ng-model="filter.searchInput" placeholder="Search labels" />
+                </span>
+            </div>
+            <div ng-repeat="label in labels | filter : {'name':filter.searchInput} |  orderBy:filter.sort.value" class="item space-between">
+                <div>
+                    <span class="label-element label--big" ng-style="{'color':label.color}">
+                        {{label.name}}
+                    </span>
+                </div>
+                <div>
+                    <span class="text--color-grey">
+                        {{label.description}}
+                    </span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="panel-right">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Sort</span>
+                <span class="panel-actions">
+                    <span class="fa fa-refresh text--color-grey" ng-click="clearFilters()" title="clear sort"></span>
+                </span>
+            </div>
+            <filter-element filter-options="sortOptions" bind-key="name" selected-option="filter.sort">
+                <filter-heading>Sort</filter-heading>
+            </filter-element>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="panel-container" >
+    <div class="panel-left">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Issues</span>
+                <span class="panel-actions">
+                    <input type="text" ng-model="filter.searchInput" placeholder="Search issues" />
+                </span>
+            </div>
+            <div ng-repeat="issue in issues 
+                | filter :{ 'title' : filter.searchInput , 'createdBy' : filter.author.userName,'isOpen': filter.status.isOpen} 
+                | filter :filterOnLabel(filter.label) | filter : filterOnAssignee(filter.assignee) |  orderBy:filter.sort.value" 
+                ng-class="{'issues-open': issue.isOpen ,'issues-closed': !issue.isOpen}" 
+                class="item"
+                ng-click="openIssue(issue.id)">
+                <div class="flex-10">
+                    <strong>{{issue.title}}</strong>
+                    <div class="text--color-grey"> #{{issue.id}} opened on {{issue.openedDate | date}} by {{issue.createdBy}}</div>
+                    <div>
+                        <span class="label-element label--small" ng-repeat="label in issue.label"  ng-style="{'color':label.color}">{{label.name}}</span>
+                    </div>
+                </div>
+                <div class="flex-1" ng-if="issue.comments.length">
+
+                    <span class="fa fa-comment-o"></span>
+                    <span>{{issue.comments.length}}</span>
+                </div>
+            </div>
+            <div ng-if="issues.length==0"  class="item center">
+                No issues are there .
+                <a href="#!create">Create One</a>
+            </div>
+            <div ng-if="issues.length>0 && (issues 
+                    | filter :{ 'title' : filter.searchInput , 'createdBy' : filter.author.userName,'isOpen': filter.status.isOpen} 
+                    | filter :filterOnLabel(filter.label) | filter : filterOnAssignee(filter.assignee)).length == 0" 
+                 class="item center">
+                    No Matches found.Try changing the filter.
+                </div>
+        </div>
+    </div>
+    <div class="panel-right">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Filters and Sort</span>
+                <span class="panel-actions">
+                       <span class="fa fa-refresh text--color-grey" ng-click="clearFilters()" title="clear filter and sort"></span>
+                    </span>
+            </div>
+            <filter-element filter-options="statusOptions" bind-key="name" selected-option="filter.status">
+                    <filter-heading>Status</filter-heading> 
+            </filter-element>
+            <filter-element filter-options="users" bind-key="userName" selected-option="filter.author">
+                  <filter-heading>Author</filter-heading> 
+            </filter-element>
+            <filter-element filter-options="labels" bind-key="name" selected-option="filter.label">
+                <filter-heading>Label</filter-heading>
+            </filter-element>            
+            <filter-element filter-options="users" bind-key="userName" selected-option="filter.assignee">
+                 <filter-heading>Assignee</filter-heading>
+            </filter-element>   
+            <filter-element filter-options="sortOptions" bind-key="name" selected-option="filter.sort">
+                    <filter-heading>Sort</filter-heading>
+               </filter-element>         
+        </div>
+    </div>
+</div>

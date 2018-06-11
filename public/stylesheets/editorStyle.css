@@ -1,0 +1,38 @@
+/* Styles go here */
+
+/* Put your css in here */
+
+.editor-container{
+  height: 250px;
+}
+.editor-toolbar{
+    box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 1px 1px rgba(0,0,0,0.16);
+    height:20%;
+    border-top:5px solid #5c90d2;
+    border-radius:2px 2px 0 0;
+}
+.editor-toolbar button{
+  margin: 5px 1px;
+  padding: 9px;
+  cursor:pointer;
+  background-color:#fff;
+  border:none;
+  outline:none;
+}
+.editor-toolbar button:hover{
+ background-color:#eee
+}
+.editor-textarea{
+  outline:none;
+  height:80%;
+  padding:10px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 1px 1px rgba(0,0,0,0.16);
+  overflow:auto;
+  border-radius:2px 2px 0 0;
+}
+.editor-title{
+  display: inline-block;
+  font-size: 16px;
+  margin: 12px;
+  color: #5c90d2
+}

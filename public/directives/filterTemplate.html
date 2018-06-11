@@ -1,0 +1,27 @@
+<div class="filter-element" ng-class="{'filter-open':isOpen}">
+  <div class="filter-header" ng-click="toggleFilter()">
+    <span ng-transclude="heading" ></span>
+    <span class="header-action">
+      <span class="fa fa-angle-down" ng-if="!isOpen"></span>
+      <span class="fa fa-angle-up" ng-if="isOpen"></span>
+    </span>
+    <div class="text--color-grey" ng-if="isOpen" ng-transclude="description"></div>
+  </div>
+
+  <div class="filter-content" ng-show="isOpen">
+    <div class="filter-search">
+      <span class="fa fa-search"></span>
+      <input type="text" placeholder="search options" ng-model="searchInput">
+    </div>
+    <div ng-repeat="option in filterOptions | filter :{[bindKey] : searchInput}" class="filter-option" ng-click="selectOption(option,index)">
+      <span>{{option[bindKey]}}</span>
+      <span class="fa fa-check filter-check" ng-if="checkSelected(option)"></span>
+    </div>
+    <div class="filter-option" ng-if="!filterOptions || filterOptions.length == 0">
+      No data found
+    </div>
+    <div class="filter-option" ng-if="filterOptions && (filterOptions| filter :{[bindKey] : searchInput} ).length == 0">
+        No matches found
+      </div>
+  </div>
+</div>

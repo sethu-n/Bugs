@@ -1,0 +1,57 @@
+<div class="panel-container">
+    <div class="panel-left">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle text--color-black">
+                    {{issue.title}}
+                    <span class="text--color-grey">#{{issue.id}}</span>
+                    <div class="text--color-grey" ng-if="issue.isOpen">
+                        <span class="issue-status issue-open">open</span>
+                        <span class="text--color-grey">
+                            {{issue.createdBy}} opened this issue on {{issue.openedDate | date}}
+                        </span>
+                    </div>
+                    <div ng-if="!issue.isOpen">
+                        <span class="issue-status issue-closed">closed</span>
+                        <span class="text--color-grey">
+                            {{issue.closedBy}} closed this issue on {{issue.closedDate | date}}
+                        </span>
+                    </div>
+                </span>
+                <span class="panel-actions">
+                    <button class="btn btn-default" ng-click="updateIssue()">Save</button>
+                    <button class="btn btn-success" ng-if="issue.isOpen" ng-click="closeIssue()">Close Issues</button>
+                </span>
+            </div>
+            <h4 class="options" ng-if="issue.comments.length>0">Comments</h4>
+            <div ng-repeat="comment in issue.comments" class="editor-padding" ng-class="{'border-bottom':$last}">
+                <issue-editor editor-content="comment.description" edit="comment.editMode">
+                    <editor-title>commented by
+                        <strong>{{comment.commentedUser}}</strong> on {{comment.commentedDate | date }}</editor-title>
+                </issue-editor>
+            </div>
+
+            <h4 class="options ">Add New Comment</h4>
+            <div class="editor-padding">
+                <issue-editor editor-content="newComment.data" edit="newComment.editMode">
+                    <editor-title>Leave a Comment</editor-title>
+                </issue-editor>
+                <button class="btn btn-primary margin-top-10" ng-click="addComment()">Add</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-right">
+        <div class="panel-content">
+            <div class="panel-header">
+                <span class="panel-tittle">Options</span>
+            </div>
+            <filter-element filter-options="labels" bind-key="name" selected-option="issue.label" multiselect="true">
+                <filter-heading>Label</filter-heading>
+            </filter-element>
+            <filter-element filter-options="users" bind-key="userName" selected-option="issue.assignedTo">
+                <filter-heading>Assignee</filter-heading>
+            </filter-element>
+
+        </div>
+    </div>
+</div>
